@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.system.dao.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.system.model.Teacher" >
+    <constructor >
+      <idArg column="teacher_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="teacher_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="teacher_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="teacher_birthday" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="teacher_degree" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="teacher_position" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="teacher_hiredate" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="college_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    teacher_id, teacher_name, teacher_sex, teacher_birthday, teacher_degree, teacher_position, 
+    teacher_hiredate, college_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.system.model.TeacherExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where teacher_id = #{teacherId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from teacher
+    where teacher_id = #{teacherId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.system.model.TeacherExample" >
+    delete from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.system.model.Teacher" >
+    insert into teacher (teacher_id, teacher_name, teacher_sex, 
+      teacher_birthday, teacher_degree, teacher_position, 
+      teacher_hiredate, college_id)
+    values (#{teacherId,jdbcType=INTEGER}, #{teacherName,jdbcType=VARCHAR}, #{teacherSex,jdbcType=VARCHAR}, 
+      #{teacherBirthday,jdbcType=DATE}, #{teacherDegree,jdbcType=VARCHAR}, #{teacherPosition,jdbcType=VARCHAR}, 
+      #{teacherHiredate,jdbcType=DATE}, #{collegeId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.system.model.Teacher" >
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="teacherName != null" >
+        teacher_name,
+      </if>
+      <if test="teacherSex != null" >
+        teacher_sex,
+      </if>
+      <if test="teacherBirthday != null" >
+        teacher_birthday,
+      </if>
+      <if test="teacherDegree != null" >
+        teacher_degree,
+      </if>
+      <if test="teacherPosition != null" >
+        teacher_position,
+      </if>
+      <if test="teacherHiredate != null" >
+        teacher_hiredate,
+      </if>
+      <if test="collegeId != null" >
+        college_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="teacherName != null" >
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSex != null" >
+        #{teacherSex,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherBirthday != null" >
+        #{teacherBirthday,jdbcType=DATE},
+      </if>
+      <if test="teacherDegree != null" >
+        #{teacherDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherPosition != null" >
+        #{teacherPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherHiredate != null" >
+        #{teacherHiredate,jdbcType=DATE},
+      </if>
+      <if test="collegeId != null" >
+        #{collegeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.system.model.TeacherExample" resultType="java.lang.Integer" >
+    select count(*) from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update teacher
+    <set >
+      <if test="record.teacherId != null" >
+        teacher_id = #{record.teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.teacherName != null" >
+        teacher_name = #{record.teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherSex != null" >
+        teacher_sex = #{record.teacherSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherBirthday != null" >
+        teacher_birthday = #{record.teacherBirthday,jdbcType=DATE},
+      </if>
+      <if test="record.teacherDegree != null" >
+        teacher_degree = #{record.teacherDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherPosition != null" >
+        teacher_position = #{record.teacherPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teacherHiredate != null" >
+        teacher_hiredate = #{record.teacherHiredate,jdbcType=DATE},
+      </if>
+      <if test="record.collegeId != null" >
+        college_id = #{record.collegeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update teacher
+    set teacher_id = #{record.teacherId,jdbcType=INTEGER},
+      teacher_name = #{record.teacherName,jdbcType=VARCHAR},
+      teacher_sex = #{record.teacherSex,jdbcType=VARCHAR},
+      teacher_birthday = #{record.teacherBirthday,jdbcType=DATE},
+      teacher_degree = #{record.teacherDegree,jdbcType=VARCHAR},
+      teacher_position = #{record.teacherPosition,jdbcType=VARCHAR},
+      teacher_hiredate = #{record.teacherHiredate,jdbcType=DATE},
+      college_id = #{record.collegeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.system.model.Teacher" >
+    update teacher
+    <set >
+      <if test="teacherName != null" >
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherSex != null" >
+        teacher_sex = #{teacherSex,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherBirthday != null" >
+        teacher_birthday = #{teacherBirthday,jdbcType=DATE},
+      </if>
+      <if test="teacherDegree != null" >
+        teacher_degree = #{teacherDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherPosition != null" >
+        teacher_position = #{teacherPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherHiredate != null" >
+        teacher_hiredate = #{teacherHiredate,jdbcType=DATE},
+      </if>
+      <if test="collegeId != null" >
+        college_id = #{collegeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where teacher_id = #{teacherId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.system.model.Teacher" >
+    update teacher
+    set teacher_name = #{teacherName,jdbcType=VARCHAR},
+      teacher_sex = #{teacherSex,jdbcType=VARCHAR},
+      teacher_birthday = #{teacherBirthday,jdbcType=DATE},
+      teacher_degree = #{teacherDegree,jdbcType=VARCHAR},
+      teacher_position = #{teacherPosition,jdbcType=VARCHAR},
+      teacher_hiredate = #{teacherHiredate,jdbcType=DATE},
+      college_id = #{collegeId,jdbcType=INTEGER}
+    where teacher_id = #{teacherId,jdbcType=INTEGER}
+  </update>
+</mapper>
