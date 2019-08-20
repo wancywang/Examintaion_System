@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    function checknotice() {
+        $.ajax({
+            type:"GET",
+            url:"/notice/list",
+            contentType:"application/json;charset=utf-8",
+            data:"{}",
+            dataType:"json",
+            success:function (result){
+                DisplayListItems(result);
+            },
+            "error": function (result) {
+                var response = result.responseText;
+                alert('Error loading: ' + response);
+            }
+            });
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+    </tr>
+</table>
+</body>
+</html>

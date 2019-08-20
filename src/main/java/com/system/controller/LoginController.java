@@ -27,14 +27,16 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken(userLogin.getUserName(),userLogin.getUserPassword());
         Subject subject = SecurityUtils.getSubject();
         subject.login(token);
+
         if(subject.hasRole("admin")){
-            return "../templates/login";
+
+            return "../templates/admin";
            // return "admin/showStudent";
         }else if(subject.hasRole("teacher")){
-            return "teacher/showCourse";
+            return "../templates/teacher";
         }else if(subject.hasRole("student")){
-            return "admin/showStudent";
+            return "../templates/student";
         }
-        return "/login.html";
+        return "../templates/404";
     }
 }
