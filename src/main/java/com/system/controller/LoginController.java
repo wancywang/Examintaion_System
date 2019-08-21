@@ -28,7 +28,7 @@ public class LoginController {
     public static final String TEACHER = "teacher";
 
     public static final String STUDENT = "student";
-    
+
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<ResponseEnvelope<String>> login(UserLogin userLogin) throws Exception{
