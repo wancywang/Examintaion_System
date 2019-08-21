@@ -1,0 +1,56 @@
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">参数一</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="p1" class="layui-input" placeholder="请输入参数一的值" lay-verify="required"
+                               required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">参数二</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="p2" class="layui-input" placeholder="请输入参数二的值" lay-verify="required"
+                               required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">参数三</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="p3" class="layui-input" placeholder="请输入参数三的值" lay-verify="required"
+                               required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-filter="formHash" lay-submit>跳转</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- js部分 -->
+<script>
+    layui.use(['layer', 'form', 'index'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var index = layui.index;
+
+        //监听提交
+        form.on('submit(formHash)', function (data) {
+            var ps = data.field;
+            index.openNewTab({
+                name: '参数接收',
+                url: '#/template/routerParam/p1=' + ps.p1 + '/p2=' + ps.p2 + '/p3=' + ps.p3
+            });
+        });
+    });
+</script>

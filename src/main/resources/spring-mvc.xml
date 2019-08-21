@@ -24,7 +24,7 @@
         <property name="viewClass" value="com.system.utils.HtmlResourceView"/><!-- 改成你自己的第一步新建的解析类路径 -->
         <property name="order" value="0" />
         <!-- 前缀 -->
-        <property name="prefix" value="/templates/" />
+        <property name="prefix" value="/views/stuPage/components" />
         <property name="suffix" value=".html" />
     </bean>
 

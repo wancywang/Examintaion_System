@@ -1,0 +1,81 @@
+<style>
+    /** 错误提示 */
+    .error-tip-div {
+        background: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, .1);
+        padding: 12px 15px;
+        color: #555;
+        border-radius: 5px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 50px;
+        font-size: 16px;
+    }
+
+    .error-tip-div .layui-icon {
+        color: #f56c6c;
+        font-size: 25px;
+        display: inline-block;
+        vertical-align: middle;
+        height: 25px;
+        overflow: hidden;
+    }
+</style>
+
+<div class="admin-iframe" style="height: auto;-webkit-overflow-scrolling: touch;background: #fff;">
+    <iframe id="adminIframe" class="admin-iframe" frameborder="0"></iframe>
+    <!-- 错误提示 -->
+    <div id="iframeErrorTip" class="error-tip-div layui-hide">
+        <i class="layui-icon layui-icon-close-fill"></i> 加载失败，请刷新重试
+    </div>
+</div>
+
+<!-- js部分 -->
+<script>
+    layui.use(['index'], function () {
+        var $ = layui.jquery;
+        var index = layui.index;
+
+        // id对应的url
+        var urls = [
+            {
+                id: 'baidu',
+                title: '百度一下',
+                url: 'https://baidu.com'
+            }, {
+                id: 'laydemo',
+                title: '组件演示',
+                url: 'https://www.layui.com/demo/button.html'
+            }, {
+                id: 'layui',
+                title: 'layui文档',
+                url: 'https://www.layui.com/doc/element/button.html#use'
+            }, {
+                id: 'layer',
+                title: 'layer弹窗组件',
+                url: 'https://layer.layui.com/'
+            }, {
+                id: 'laydate',
+                title: 'laydate日期组件',
+                url: 'https://www.layui.com/laydate/'
+            }
+        ];
+
+        // 根据不同的id参数加载不同的url
+        var id = layui.router().search.id, isNotFound = true;
+        for (var i = 0; i < urls.length; i++) {
+            if (urls[i].id == id) {
+                index.setTabTitle(urls[i].title);
+                $('#adminIframe').attr('src', urls[i].url);
+                isNotFound = false;
+                $('#iframeErrorTip').addClass('layui-hide');
+            }
+        }
+        if (isNotFound) {
+            index.setTabTitle('无标题', '/template/iframe');
+            $('#iframeErrorTip').removeClass('layui-hide');
+        }
+
+    });
+</script>

@@ -21,7 +21,7 @@
         <!--安全管理器 -->
         <property name="securityManager" ref="securityManager" />
         <!-- 要求登录时的链接(登录页面地址)，非必须的属性，默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
-        <property name="loginUrl" value="/login.html"/>
+        <property name="loginUrl" value="/views/stuPage/components/template/login.html"/>
 
         <property name="filterChainDefinitions">
             <value>
@@ -45,6 +45,7 @@
                 /images/** = anon
                 /fonts/** = anon
                 /templates/** = anon
+                /views/stuPage/** = anon
                 # 除了上面额 /login 可以匿名访问，其他路径都需要登录访问
                 # 如果没登录，就访问其他路径会跳转到 /login 登录
 

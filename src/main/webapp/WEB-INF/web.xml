@@ -73,6 +73,6 @@
 
   <welcome-file-list>
     <!--<welcome-file>login.jsp</welcome-file>-->
-    <welcome-file>login.html</welcome-file>
+    <welcome-file>../views/stuPage/components/template/login.html</welcome-file>
   </welcome-file-list>
   </web-app>

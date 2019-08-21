@@ -1,9 +1,13 @@
 package com.system.controller;
 
 import com.system.model.UserLogin;
+import com.system.utils.ResponseEnvelope;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +20,15 @@ import org.springframework.web.bind.annotation.*;
 @SessionAttributes("userLogin")
 public class LoginController {
 
+    /**
+     * 角色信息
+     */
+    public static final String ADMIN = "admin";
+
+    public static final String TEACHER = "teacher";
+
+    public static final String STUDENT = "student";
+
 
     @RequestMapping(value = "/login", method = {RequestMethod.GET})
     public String loginUI() throws Exception {
@@ -23,20 +36,22 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(UserLogin userLogin) throws Exception{
+    @ResponseBody
+    public ResponseEntity<ResponseEnvelope<String>> login(UserLogin userLogin) throws Exception{
         UsernamePasswordToken token = new UsernamePasswordToken(userLogin.getUserName(),userLogin.getUserPassword());
         Subject subject = SecurityUtils.getSubject();
-        subject.login(token);
-
-        if(subject.hasRole("admin")){
-
-            return "../templates/admin";
-           // return "admin/showStudent";
-        }else if(subject.hasRole("teacher")){
-            return "../templates/teacher";
-        }else if(subject.hasRole("student")){
-            return "../templates/student";
+        try {
+            subject.login(token);
+        }catch (AuthenticationException e){
+           return new ResponseEntity<>(new ResponseEnvelope<String >(404, "not_found"), HttpStatus.NOT_FOUND);
         }
-        return "../templates/404";
+        if(subject.hasRole(ADMIN)){
+            return new ResponseEntity<>(new ResponseEnvelope<String >(200, "success", "test"), HttpStatus.OK);
+        }else if(subject.hasRole(TEACHER)){
+            return new ResponseEntity<>(new ResponseEnvelope<String >(200, "success.", "test"), HttpStatus.OK);
+        }else if(subject.hasRole(STUDENT)){
+            return new ResponseEntity<>(new ResponseEnvelope<String >(200, "success.", "test"), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new ResponseEnvelope<String >(400, "bad_request"), HttpStatus.BAD_REQUEST);
     }
 }

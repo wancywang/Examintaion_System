@@ -53,6 +53,8 @@ public class LoginRealm extends AuthorizingRealm {
         if (role != null) {
             r.add(role.getRoleName());
             info.setRoles(r);
+        }else {
+            return null;
         }
 
         return info;

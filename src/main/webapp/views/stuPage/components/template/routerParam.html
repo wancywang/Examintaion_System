@@ -1,0 +1,39 @@
+<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">路由信息</label>
+                    <div id="routerInfo" class="layui-form-mid layui-word-aux"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">参数列表</label>
+                    <div id="routerParam" class="layui-form-mid layui-word-aux"></div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" type="button" ew-event="back">返回</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- js部分 -->
+<script>
+    layui.use(['layer', 'form', 'admin'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var admin = layui.admin;
+
+        admin.activeNav('/template/routerDemo');
+
+        $('#routerInfo').html('<pre>' + JSON.stringify(layui.router(), null, 4) + '</pre>');
+        $('#routerParam').html('<pre>' + JSON.stringify(layui.router().search, null, 4) + '</pre>');
+    });
+</script>

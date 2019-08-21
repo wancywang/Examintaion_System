@@ -1,0 +1,109 @@
+[
+  {
+    "name": "首页",
+    "url": "javascript:;",
+    "icon": "layui-icon layui-icon-home",
+    "subMenus": [
+      {
+        "name": "我的主页",
+        "url": "#/stuIndex/stuIndex"
+      }
+    ]
+  },
+	  {
+	  "name": "成绩查询",
+	  "url": "javascript:;",
+	  "icon": "layui-icon layui-icon-home",
+	  "subMenus": [
+	    {
+	      "name": "个人课程成绩",
+	      "url": "#/stuIndex/score/myScore"
+	    },
+	    {
+	      "name": "创新实践成绩",
+	      "url": "#/stuIndex/score/innovativeScore"
+	    }
+	  ]
+	}
+	,
+	  {
+	  "name": "我的信息",
+	  "url": "javascript:;",
+	  "icon": "layui-icon layui-icon-home",
+	  "subMenus": [
+	    {
+	      "name": "个人基本信息",
+	      "url": "#/stuIndex/info/myInfo"
+	    },
+	    {
+	      "name": "学籍信息",
+	      "url": "#/stuIndex/info/maintenance"
+	    }
+	  ]
+	},
+	  {
+	  "name": "课表查询",
+	  "url": "javascript:;",
+	  "icon": "layui-icon layui-icon-home",
+	  "subMenus": [
+	    {
+	      "name": "班级课表",
+	      "url": "#/stuIndex/courses/classCourses"
+	    },
+	    {
+	      "name": "全校课表",
+	      "url": "#/stuIndex/courses/allCourses"
+	    },
+	    {
+	      "name": "上课任务",
+	      "url": "#/stuIndex/courses/classTask"
+	    }
+	  ]
+	},
+	  {
+	  "name": "选课报名",
+	  "url": "javascript:;",
+	  "icon": "layui-icon layui-icon-home",
+	  "subMenus": [
+	    {
+	      "name": "个人选课",
+	      "url": "#/stuIndex/selectCourses/mySCourses"
+	    },
+	    {
+	      "name": "实践学期选课",
+	      "url": "#/stuIndex/selectCourses/myPCourses"
+	    },
+	    {
+	      "name": "选修课程选课",
+	      "url": "#/stuIndex/selectCourses/myCCourses"
+	    },
+	    {
+	      "name": "已选课程",
+	      "url": "#/stuIndex/selectCourses/SelectedCourses"
+	    }
+	  ]
+	},
+	  {
+	  "name": "问卷调查",
+	  "url": "javascript:;",
+	  "icon": "layui-icon layui-icon-home",
+	  "subMenus": [
+	    {
+	      "name": "教师评价问卷",
+	      "url": "#/stuIndex/questionnaire/QforTeachers"
+	    },
+	    {
+	      "name": "课程评价问卷",
+	      "url": "#/stuIndex/questionnaire/QforCourses"
+	    },
+	    {
+	      "name": "辅导员评价问卷",
+	      "url": "#/stuIndex/questionnaire/QforInstructor"
+	    },
+			{
+				"name":"其他问卷",
+				"url":"#/stuIndex/questionnaire/QforOthers"
+			}
+	  ]
+	}
+]

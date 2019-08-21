@@ -1,0 +1,172 @@
+[
+  {
+    "id": "xt1",
+    "name": "系统一",
+    "subMenus": [
+      {
+        "name": "Dashboard",
+        "url": "javascript:;",
+        "icon": "layui-icon layui-icon-home",
+        "subMenus": [
+          {
+            "name": "控制台",
+            "url": "#/console/console1"
+          },
+          {
+            "name": "分析页",
+            "url": "#/console/console2"
+          },
+          {
+            "name": "欢迎页",
+            "url": "#/console/welcome"
+          }
+        ]
+      },
+      {
+        "name": "系统管理",
+        "icon": "layui-icon layui-icon-set",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "用户管理",
+            "url": "#/system/user"
+          },
+          {
+            "name": "角色管理",
+            "url": "#/system/role"
+          },
+          {
+            "name": "权限管理",
+            "url": "#/system/authorities"
+          },
+          {
+            "name": "登录日志",
+            "url": "#/system/loginRecord"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xt2",
+    "name": "系统一",
+    "subMenus": [
+      {
+        "name": "模板页面",
+        "icon": "layui-icon layui-icon-template",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "表单页",
+            "url": "javascript:;",
+            "subMenus": [
+              {
+                "name": "基础表单",
+                "url": "#/template/form/form-basic"
+              },
+              {
+                "name": "复杂表单",
+                "url": "#/template/form/form-advance"
+              },
+              {
+                "name": "分步表单",
+                "url": "#/template/form/form-step"
+              }
+            ]
+          },
+          {
+            "name": "表格页",
+            "url": "javascript:;",
+            "subMenus": [
+              {
+                "name": "数据表格",
+                "url": "#/template/table/table-basic"
+              },
+              {
+                "name": "复杂查询",
+                "url": "#/template/table/table-advance"
+              },
+              {
+                "name": "左树右表",
+                "url": "#/template/table/table-ltrt"
+              },
+              {
+                "name": "表格缩略图",
+                "url": "#/template/table/table-img"
+              }
+            ]
+          },
+          {
+            "name": "错误页",
+            "url": "javascript:;",
+            "subMenus": [
+              {
+                "name": "500",
+                "url": "#/template/error/error-500"
+              },
+              {
+                "name": "404",
+                "url": "#/template/error/error-404"
+              },
+              {
+                "name": "403",
+                "url": "#/template/error/error-403"
+              }
+            ]
+          },
+          {
+            "name": "个人中心",
+            "url": "#/template/user-info"
+          },
+          {
+            "name": "登录页面",
+            "url": "./components/template/login.html"
+          },
+          {
+            "name": "文件管理",
+            "url": "#/template/file/fileMain"
+          },
+          {
+            "name": "路由传参",
+            "url": "#/template/routerDemo"
+          },
+          {
+            "name": "多系统",
+            "url": "./side-more.html"
+          }
+        ]
+      },
+      {
+        "name": "扩展组件",
+        "icon": "layui-icon layui-icon-app",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "下拉菜单",
+            "url": "#/plugin/dropdown"
+          },
+          {
+            "name": "消息通知",
+            "url": "#/plugin/notice"
+          },
+          {
+            "name": "弹窗皮肤",
+            "url": "#/plugin/dialog"
+          },
+          {
+            "name": "鼠标右键",
+            "url": "#/plugin/contextMenu"
+          },
+          {
+            "name": "打印插件",
+            "url": "#/plugin/printer"
+          },
+          {
+            "name": "更多扩展",
+            "url": "#/plugin/other"
+          }
+        ]
+      }
+    ]
+  }
+]
