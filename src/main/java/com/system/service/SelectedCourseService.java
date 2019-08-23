@@ -14,12 +14,12 @@ import java.util.List;
 public interface SelectedCourseService {
 
     /**
-     * 根据id查询课程
+     * 根据课程id查询课程
      * @param id
      * @return
      * @throws Exception
      */
-    List<SelectedCourseCustom> findById(Integer id) throws Exception;
+    List<SelectedCourseCustom> findByCourseId(Integer id) throws Exception;
 
     /**
      * 根据课程id分页查询课程

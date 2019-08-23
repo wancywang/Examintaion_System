@@ -1,16 +1,21 @@
 package com.system.controller;
 
-import com.system.model.CourseCustom;
-import com.system.model.SelectedCourse;
-import com.system.model.SelectedCourseCustom;
-import com.system.model.Student;
+import com.alibaba.fastjson.JSONArray;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.system.model.*;
 import com.system.service.CourseService;
 import com.system.service.SelectedCourseService;
 import com.system.service.StudentService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 /**
  * @Author: Alex
@@ -28,20 +33,44 @@ public class StudentController {
     @Autowired
     private SelectedCourseService selectedCourseService;
 
-    @GetMapping("/student/{studentId}")
+    /**
+     * 登陆后获取学生id、姓名
+     * @return
+     */
+    @GetMapping("/student/studentInfo")
     @ResponseBody
-    public Student getStudentById(@PathVariable Integer studentId) throws Exception{
-        Student student = studentService.findStudentById(studentId);
-        return student;
+    public Student getStudentInfo() throws Exception {
+        String username = (String)SecurityUtils.getSubject().getPrincipal();
+        return studentService.findStudentById((Integer.parseInt(username)));
     }
 
-    @RequestMapping(value = "/student/getCourse")
+    /**
+     * 根据id获得学生信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/student/message/{id}")
     @ResponseBody
-    public String getSelectedCourse(@PathVariable Integer id) throws Exception{
-        SelectedCourseCustom selectedCourseCustom = new SelectedCourseCustom();
-        selectedCourseCustom.setCourseId(id);
-        selectedCourseCustom.setStudentId(id);
-        return selectedCourseCustom.toString();
+    public Student getStudentById(@PathVariable Integer id) throws Exception{
+       StudentCustom studentCustom = studentService.findStudentById(id);
+       return studentCustom;
     }
 
+    /**
+     * 根据Id获得该学生课程
+     *
+     * @return
+     * @throws Exception
+     */
+    @GetMapping(value = "/student/course")
+    @ResponseBody
+    public String getCourse() throws Exception{
+        Subject subject = SecurityUtils.getSubject();
+        StudentCustom studentCustom = studentService.findStudentAndSelectCourseListByName((String) subject.getPrincipal());
+        List<SelectedCourseCustom> list = studentCustom.getSelectedCourseList();
+        System.out.println(studentCustom.getStudentId());
+        System.out.println(JSONArray.toJSONString(list));
+        return JSONArray.toJSONString(list);
+    }
 }

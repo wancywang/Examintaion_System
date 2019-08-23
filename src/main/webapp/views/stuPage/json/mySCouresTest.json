@@ -1,0 +1,45 @@
+{
+	"code": 0,
+	"msg": "已加载所有课程",
+	"count": 5,
+	"data": [{
+			"couresId": 1,
+			"couresName": "java程序设计",
+			"couresTeacher": "java程序设计",
+			"couresScore": "学分",
+			"couresTime": "学时",
+			"selectAbleNum": "限选人数",
+			"selectedNum": "已选人数",
+			"opreationTime": "2018-07-21 10:03:40",
+			"state": 0,
+			"coures_videourl": "CS302145.mp4",
+			"couresInfo": "是的房间的实际就是打开攻击力考试大纲绝地逢生都快放假的设计"
+		},
+		{
+			"couresId": 2,
+			"couresName": "java程序设计",
+			"couresTeacher": "java程序设计",
+			"couresScore": "学分",
+			"couresTime": "学时",
+			"selectAbleNum": "限选人数",
+			"selectedNum": "已选人数",
+			"opreationTime": "2018-07-21 10:03:40",
+			"state": 1,
+			"coures_videourl": "CS302145.mp4",
+			"couresInfo": "是的房间的实际就是打开攻击力考试大纲绝地逢生都快放假的设计"
+		},
+		{
+			"couresId": 3,
+			"couresName": "java程序设计",
+			"couresTeacher": "java程序设计",
+			"couresScore": "学分",
+			"couresTime": "学时",
+			"selectAbleNum": "限选人数",
+			"selectedNum": "已选人数",
+			"opreationTime": "2018-07-21 10:03:40",
+			"state": 1,
+			"coures_videourl": "CS302145.mp4",
+			"couresInfo": "是的房间的实际就是打开攻击力考试大纲绝地逢生都快放假的设计"
+		}
+	]
+}

@@ -1,0 +1,247 @@
+<!-- 正文开始 -->
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-card-body">
+			<div class="layui-form toolbar">
+				<div class="layui-form-item pull-right">
+					<div class="layui-inline">
+					    <label class="layui-form-label w-auto">搜索：</label>
+					    <div class="layui-input-inline mr0">
+					        <input name="keyword" class="layui-input" type="text" placeholder="输入关键字"/>
+					    </div>
+					</div>
+					<div class="layui-inline" style="padding-left: 20px;">
+						<button class="layui-btn icon-btn" lay-filter="formSubSearchTbBas" lay-submit>
+						    <i class="layui-icon">&#xe615;</i>搜索
+						</button>
+						<button id="btnExportTbAdv" class="layui-btn icon-btn">
+							<i class="layui-icon">&#xe67d;</i>导出选课信息
+						</button>
+					</div>
+				</div>
+			</div>
+			<table class="layui-table" id="tableTbAdv" lay-filter="tableTbAdv"></table>
+		</div>
+	</div>
+
+</div>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="tableBarTbAdv">
+	{{# if(d.state==0){ }}
+		<a class="layui-icon layui-icon-ok-circle" style="font-size: 18px ;color:#41A863"><a> 已选</a></a>
+	{{# }else{ }}
+		<a class="layui-icon layui-icon-close-fill" style="font-size: 18px ;color:#FD0065"><a> 未选</a></a>
+	{{# } }}
+</script>
+<!-- 表格状态列 -->
+<script type="text/html" id="tplStateTbAdv">
+	<input type="checkbox" lay-filter="ckStateTbAdv" value="{{d.couresId+'&'+d.couresName}}" lay-skin="switch" id="checkSelect{{d.couresId}}"
+           lay-text="选定|退选" {{d.state==0?'checked':''}} />&emsp;
+	<a id="couresInfo" class="" lay-event="showCouresInfo" style="cursor: pointer;background-color: #FFB800;border-style:solid;border-width: 2px;border-color:#FFB800;border-radius: 12px;padding-left: 5px;padding-right: 5px;padding-top:1px;padding-bottom: 2px;">
+		<font style="font-size: 12px;color: #ffffff;">课程介绍</font>
+	</a>
+</script>
+<!-- js部分 -->
+<script>
+	layui.use(['layer', 'form', 'table', 'util', 'laydate','admin'], function() {
+		var $ = layui.jquery;
+		var layer = layui.layer;
+		var form = layui.form;
+		var table = layui.table;
+		var util = layui.util;
+		var laydate = layui.laydate;
+		var config = layui.config;
+		var admin = layui.admin;
+		form.render('select');
+
+		// 渲染表格
+		var insTb = table.render({
+			elem: '#tableTbAdv',
+			url: config.base_server + 'myPCouresTest.json',
+			page: true,
+			cellMinWidth: 100,
+			cols: [
+				[{
+						type: 'checkbox'
+					},
+					{
+						field: 'couresId',
+						align: 'center',
+						sort: true,
+						title: '课程编号',
+						width: 120
+					},
+					{
+						field: 'couresName',
+						align: 'center',
+						sort: true,
+						title: '课程名称'
+					},
+					{
+						field: 'couresTeacher',
+						align: 'center',
+						sort: true,
+						title: '任课教师',
+						width: 120
+					},
+					{
+						field: 'couresScore',
+						align: 'center',
+						sort: true,
+						title: '学分',
+						width: 80
+					},
+					{
+						field: 'couresTime',
+						sort: true,
+						align: 'center',
+						title: '学时',
+						width: 80
+					},
+					{
+						field: 'selectAbleNum',
+						align: 'center',
+						sort: true,
+						title: '限选人数',
+						width: 100
+					},
+					{
+						field: 'selectedNum',
+						align: 'center',
+						sort: true,
+						title: '已选人数',
+						width: 100
+					},
+					{
+						field: 'opreationTime',
+						align: 'center',
+						sort: true,
+						title: '截止时间'
+					},
+					{
+						field: 'state',
+						align: 'center',
+						templet: '#tableBarTbAdv',
+						title: '状态',
+						minWidth: 150,
+						width: 120
+					},
+					{
+						field: 'state',
+						align: 'center',
+						sort: true,
+						toolbar: '#tplStateTbAdv',
+						title: '操作',
+						width: 220
+					}
+
+				]
+			]
+		});
+
+		// 搜索
+		form.on('submit(formSubSearchTbBas)', function(data) { 
+			insTb.reload({
+				where: data.field
+			}, 'data');
+		});
+
+		//监听工具条
+		table.on('tool(tableTbAdv)', function(obj) {
+			var data = obj.data; //当前行数据
+			var layEvent = obj.event; 
+			var couresId = data.couresId;
+			console.log(JSON.stringify(obj))
+			if (layEvent === 'showCouresInfo') { //查看
+				var videoUrl = data.coures_videourl;
+				var couresId = data.coures_id;
+				admin.open({
+					type: 1,
+					title: '《' + data.couresName + '》课程介绍',
+					shade: 0,
+					maxmin: true,
+					resize: false,
+					area: ['800px', '550px'],
+					content: '<div id="video" style="width:100%;height:100%"></div>',
+					shade: [0.8, '#393D49'],
+					shadeClose: false,
+				});
+				var videoObject = {
+					container: '#video',
+					variable: 'player',
+					autoplay: false,
+					flashplayer: false,
+					video: 'assets/videos/couresVideos/'+ videoUrl
+				};
+				var player = new ckplayer(videoObject);
+			} 
+		});
+		//checkbox-click
+		form.on('switch(ckStateTbAdv)', function(obj) {
+			layui.use(['layer', 'admin'], function() {
+				var $ = layui.jquery;
+				var layer = layui.layer;
+				var admin = layui.admin;
+				var dataStr = obj.elem.value;
+				var couresId = dataStr.substring(0, dataStr.lastIndexOf("&"));
+				var couresName = dataStr.substring(dataStr.lastIndexOf("&") + 1);
+				var confrimInfo = obj.elem.checked == 1 ? '确认选择课程《' + couresName + '》吗？' : '确认退选课程《' + couresName + '》吗？';
+				var confirmTitle = obj.elem.checked == 1 ? '确认选择' : '确认退选';
+				//console.log(couresId+'-------'+couresName);
+				// 询问弹窗
+				layer.confirm(confrimInfo, {
+					skin: 'layui-layer-admin',
+					shade: .1,
+					title: confirmTitle,
+					btn: ['确认', '取消'],
+					btn2: function(index, layero) {
+						var state = obj.elem.checked;
+						if (!state) {
+							$(obj.elem).prop('checked', !obj.elem.checked);
+							form.render('checkbox');
+						} else {
+							$(obj.elem).prop('checked', !obj.elem.checked);
+							form.render('checkbox');
+						}
+					}
+				}, function(index) {
+					alert("function"); //确定 => 进入
+					admin.req('/api/coures/selectCoures', { // 后端请求接口 ,返回json ,格式: {"code": 200 , "msg": "成功或失败信息"} , 以下为请求携带数据
+						userId: config.currentUser, //当前用户id 
+						couresId: couresId, //课程 id 
+						state: obj.elem.checked ? 0 : 1, // 0 = 已选 , 1 = 未选
+					}, function(data) {
+						if (data.code == 200) {
+							layer.msg(data.msg, {
+								icon: 1
+							});
+							insTb.reload();
+						} else {
+							layer.msg(data.msg, {
+								icon: 2
+							});
+							$(obj.elem).prop('checked', !obj.elem.checked);
+							form.render('checkbox');
+						}
+					}, 'PUT');
+
+				});
+			});
+
+		});
+
+
+		// 导出excel
+		$('#btnExportTbAdv').click(function() {
+			var checkRows = table.checkStatus('tableTbAdv');
+			if (checkRows.data.length == 0) {
+				layer.msg('请选择要导出的数据', {
+					icon: 2
+				});
+			} else {
+				table.exportFile(insTb.config.id, checkRows.data, 'xlsx');
+			}
+		});
+	});
+</script>

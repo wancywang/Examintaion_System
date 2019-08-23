@@ -2,7 +2,8 @@
 
 layui.config({
     version: true,   // 更新组件缓存，设为true不缓存，也可以设一个固定值
-    base: 'assets/module/'
+    base: 'assets/module/',
+	pageTabs: true 
 }).extend({
     formSelects: 'formSelects/formSelects-v4',
     treetable: 'treetable-lay/treetable',
@@ -57,18 +58,6 @@ layui.config({
         admin.removeLoading();
     }, 300);
 
-    // 提示
-    if (!config.pageTabs) {
-        layer.confirm('系统默认关闭多标签功能，你可以在设置界面开启', {
-            skin: 'layui-layer-admin',
-            area: '280px',
-            title: '温馨提示',
-            shade: 0,
-            btn: ['打开设置', '知道了']
-        }, function (i) {
-            layer.close(i);
-            $('a[ew-event="theme"]').trigger('click');
-        });
-    }
+   
 
 });

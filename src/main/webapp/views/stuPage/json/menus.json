@@ -5,7 +5,7 @@
     "icon": "layui-icon layui-icon-home",
     "subMenus": [
       {
-        "name": "我的主页",
+        "name": "&emsp;我的主页",
         "url": "#/stuIndex/stuIndex"
       }
     ]
@@ -13,14 +13,14 @@
 	  {
 	  "name": "成绩查询",
 	  "url": "javascript:;",
-	  "icon": "layui-icon layui-icon-home",
+	  "icon": "layui-icon layui-icon-form",
 	  "subMenus": [
 	    {
-	      "name": "个人课程成绩",
+	      "name": "&emsp;个人课程成绩",
 	      "url": "#/stuIndex/score/myScore"
 	    },
 	    {
-	      "name": "创新实践成绩",
+	      "name": "&emsp;创新实践成绩",
 	      "url": "#/stuIndex/score/innovativeScore"
 	    }
 	  ]
@@ -29,14 +29,14 @@
 	  {
 	  "name": "我的信息",
 	  "url": "javascript:;",
-	  "icon": "layui-icon layui-icon-home",
+	  "icon": "layui-icon layui-icon-username",
 	  "subMenus": [
 	    {
-	      "name": "个人基本信息",
+	      "name": "&emsp;个人基本信息",
 	      "url": "#/stuIndex/info/myInfo"
 	    },
 	    {
-	      "name": "学籍信息",
+	      "name": "&emsp;学籍信息",
 	      "url": "#/stuIndex/info/maintenance"
 	    }
 	  ]
@@ -44,64 +44,64 @@
 	  {
 	  "name": "课表查询",
 	  "url": "javascript:;",
-	  "icon": "layui-icon layui-icon-home",
+	  "icon": "layui-icon layui-icon-date",
 	  "subMenus": [
 	    {
-	      "name": "班级课表",
+	      "name": "&emsp;班级课表",
 	      "url": "#/stuIndex/courses/classCourses"
 	    },
 	    {
-	      "name": "全校课表",
+	      "name": "&emsp;全校课表",
 	      "url": "#/stuIndex/courses/allCourses"
 	    },
 	    {
-	      "name": "上课任务",
+	      "name": "&emsp;上课任务",
 	      "url": "#/stuIndex/courses/classTask"
 	    }
 	  ]
 	},
 	  {
-	  "name": "选课报名",
+	  "name": "课程",
 	  "url": "javascript:;",
-	  "icon": "layui-icon layui-icon-home",
+	  "icon": "layui-icon layui-icon-template-1",
 	  "subMenus": [
+			{
+			  "name": "&emsp;我的课程",
+			  "url": "#/stuIndex/selectCourses/myCourses"
+			},
 	    {
-	      "name": "个人选课",
-	      "url": "#/stuIndex/selectCourses/mySCourses"
-	    },
-	    {
-	      "name": "实践学期选课",
+	      "name": "&emsp;实践学期选课",
 	      "url": "#/stuIndex/selectCourses/myPCourses"
 	    },
 	    {
-	      "name": "选修课程选课",
+	      "name": "&emsp;选修课程选课",
 	      "url": "#/stuIndex/selectCourses/myCCourses"
 	    },
 	    {
-	      "name": "已选课程",
-	      "url": "#/stuIndex/selectCourses/SelectedCourses"
+	      "name": "&emsp;已选课程",
+	      "url": "#/stuIndex/selectCourses/mySldCourses"
 	    }
 	  ]
 	},
 	  {
 	  "name": "问卷调查",
 	  "url": "javascript:;",
-	  "icon": "layui-icon layui-icon-home",
+	  "icon": "layui-icon layui-icon-survey",
 	  "subMenus": [
 	    {
-	      "name": "教师评价问卷",
+	      "name": "&emsp;教师评价问卷",
 	      "url": "#/stuIndex/questionnaire/QforTeachers"
 	    },
 	    {
-	      "name": "课程评价问卷",
+	      "name": "&emsp;课程评价问卷",
 	      "url": "#/stuIndex/questionnaire/QforCourses"
 	    },
 	    {
-	      "name": "辅导员评价问卷",
+	      "name": "&emsp;辅导员评价问卷",
 	      "url": "#/stuIndex/questionnaire/QforInstructor"
 	    },
 			{
-				"name":"其他问卷",
+				"name":"&emsp;其他问卷",
 				"url":"#/stuIndex/questionnaire/QforOthers"
 			}
 	  ]

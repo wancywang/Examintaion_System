@@ -29,12 +29,15 @@ public class SelectedCourseServiceImpl implements SelectedCourseService {
     @Autowired
     private CourseService courseService;
 
+
     @Override
-    public List<SelectedCourseCustom> findById(Integer id) throws Exception {
+    public List<SelectedCourseCustom> findByCourseId(Integer courseId) throws Exception {
+        //根据课程id找到该课程
         SelectedCourseExample selectedCourseExample = new SelectedCourseExample();
         SelectedCourseExample.Criteria criteria = selectedCourseExample.createCriteria();
-        criteria.andCourseIdEqualTo(id);
+        criteria.andCourseIdEqualTo(courseId);
         List<SelectedCourse> selectedCourseList = selectedCourseMapper.selectByExample(selectedCourseExample);
+        //创建课程扩展类链表，将课程
         List<SelectedCourseCustom> selectedCourseCustomList = new ArrayList<SelectedCourseCustom>();
         for(SelectedCourse selectedCourse:selectedCourseList){
             SelectedCourseCustom selectedCourseCustom = new SelectedCourseCustom();
@@ -106,6 +109,10 @@ public class SelectedCourseServiceImpl implements SelectedCourseService {
 
     @Override
     public List<SelectedCourseCustom> findByStudentId(Integer id) throws Exception {
+        SelectedCourseExample selectedCourseExample = new SelectedCourseExample();
+        SelectedCourseExample.Criteria criteria = selectedCourseExample.createCriteria();
+        criteria.andStudentIdEqualTo(id);
+        selectedCourseMapper.selectByExample(selectedCourseExample);
         return null;
     }
 

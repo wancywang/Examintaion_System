@@ -9,5 +9,4 @@
         WHERE course.collegeID = college.collegeID
         limit #{toPageNo}, #{pageSize}
     </select>
-
 </mapper>

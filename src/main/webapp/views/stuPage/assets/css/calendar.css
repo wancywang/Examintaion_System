@@ -1,0 +1,143 @@
+* {
+	/*            padding: 0%;
+            margin: 0%; */
+}
+
+.calendar {
+	/*            margin: 45px;
+            width: auto; */
+	height: 275px;
+
+}
+
+.title {
+	height: 28px;
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
+	position: relative;
+	text-align: center;
+}
+
+#calendar-title {
+
+	text-align: center;
+	font-size: 14px;
+
+
+
+
+}
+
+#calendar-year {
+
+	text-align: center;
+	font-size: 14px;
+
+
+
+}
+
+#pre {
+	position: absolute;
+	top: 3px;
+	left: 45px;
+	width: 17px;
+	height: 16px
+}
+
+#next {
+	position: absolute;
+	top: 3px;
+	right: 45px;
+	width: 17px;
+	height: 16px;
+}
+
+#pre_year {
+	position: absolute;
+	top: 3px;
+	left: 15px;
+	width: 12px;
+	height: 15px
+}
+
+#next_year {
+	position: absolute;
+	top: 3px;
+	right: 15px;
+	width: 12px;
+	height: 15px;
+}
+
+.body-list ul {
+	font-size: 14px;
+	width: 100%;
+	box-sizing: border-box;
+
+}
+
+.body-list-title ul {
+	font-size: 14px;
+	font-weight: bold;
+	width: 100%;
+	box-sizing: border-box;
+
+}
+
+.body-list ul li {
+	list-style: none;
+	/*
+            display:inline-block; 
+            width: 13.3%;
+            */
+	/*100/7 = 14.28%*/
+	display: block;
+	width: 14.28%;
+	float: left;
+	/*规定行高，垂直居中*/
+	height: 36px;
+	line-height: 36px;
+	box-sizing: border-box;
+	text-align: center;
+
+}
+
+.body-list-title ul li {
+	list-style: none;
+	/*
+		    display:inline-block; 
+		    width: 13.3%;
+		    */
+
+	/*100/7 = 14.28%*/
+	display: block;
+	width: 14.28%;
+	float: left;
+
+	/*规定行高，垂直居中*/
+	height: 36px;
+	line-height: 36px;
+	box-sizing: border-box;
+	text-align: center;
+
+}
+
+.green {
+	color: #009688;
+}
+
+.lightgrey {
+	/*浅灰色显示过去的日期*/
+	color: #565656;
+}
+
+.darkgrey {
+	/*深灰色显示将来的日期*/
+	color: #565656;
+}
+
+/*日期当天用绿色背景绿色文字加以显示*/
+.greenbox {
+	border: 0px solid #6ac13c;
+	background: #009688;
+	color: #ffffff;
+}

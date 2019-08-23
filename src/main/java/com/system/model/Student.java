@@ -1,6 +1,8 @@
 package com.system.model;
 
-import java.util.Date;
+import com.alibaba.fastjson.annotation.JSONField;
+
+import java.sql.Date;
 
 /**
  * @Author: Alex
@@ -15,8 +17,10 @@ public class Student {
 
     private String studentSex;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date studentBirthday;
 
+    @JSONField(format = "yyyy-MM-dd")
     private Date studentGrade;
 
     private Integer collegeId;

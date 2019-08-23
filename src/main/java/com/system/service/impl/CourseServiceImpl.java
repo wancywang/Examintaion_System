@@ -62,6 +62,12 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<CourseCustom> findStudentAndSelectCourseListById(Integer studentId) throws Exception {
+        List<CourseCustom> courseCustomList = courseMapperCustom.findStudentAndSelectCourseListById(studentId);
+        return courseCustomList;
+    }
+
+    @Override
     public int getCountCourse() throws Exception {
         CourseExample courseExample = new CourseExample();
         CourseExample.Criteria criteria = courseExample.createCriteria();

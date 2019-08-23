@@ -6,7 +6,7 @@
       <idArg column="notice_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="notice_title" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="notice_content" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="notice_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="notice_time" jdbcType="DATE" javaType="java.sql.Date" />
       <arg column="notice_publisher" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>

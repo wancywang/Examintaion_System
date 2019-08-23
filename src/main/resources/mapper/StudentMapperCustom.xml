@@ -9,32 +9,32 @@
             property 的值应跟 该vo 的变量名相同
             column 的值，应与对应的数据库 表字段名相同
         -->
-        <id column="userID" property="userid"/>
-        <result column="userName" property="username" />
-        <result column="sex" property="sex" />
-        <result column="birthYear" property="birthyear" />
-        <result column="grade" property="grade" />
-        <result column="collegeID" property="collegeid" />
+        <id column="student_id" property="studentId"/>
+        <result column="student_name" property="studentName" />
+        <result column="student_sex" property="studentSex" />
+        <result column="student_birthyear" property="studentBirthyear" />
+        <result column="student_grade" property="studentGrade" />
+        <result column="college_id" property="collegeId" />
 
         <!--collection 对关联查询到的多条记录映射到集合对象中
             property： 将关联查询到的多条信息映射到 vo 哪个属性
             ofType：映射到集合属性中 pojo 的类型
         -->
         <collection property="selectedCourseList" ofType="SelectedCourseCustom">
-            <result column="courseID" property="courseid"/>
-            <result column="studentID" property="studentid"/>
-            <result column="mark" property="mark"/>
+            <result column="course_id" property="courseId"/>
+            <result column="student_id" property="studentId"/>
+            <result column="selectedcourse_mark" property="selectedcourseMark"/>
             <!--配置映射的关系的课程信息-->
             <association property="courseCustom" javaType="CourseCustom">
-                <id column="courseID" property="courseid"/>
-                <result column="courseName" property="coursename"/>
-                <result column="teacherID" property="teacherid"/>
-                <result column="courseTime" property="coursetime"/>
-                <result column="classRoom" property="classroom"/>
-                <result column="courseWeek" property="courseweek"/>
-                <result column="courseType" property="coursetype"/>
-                <result column="collegeID" property="collegeid"/>
-                <result column="score" property="score"/>
+                <id column="course_id" property="courseId"/>
+                <result column="course_name" property="courseName"/>
+                <result column="teacher_id" property="teacherId"/>
+                <result column="course_time" property="courseTime"/>
+                <result column="course_classroom" property="courseClassroom"/>
+                <result column="course_week" property="courseWeek"/>
+                <result column="course_type" property="courseType"/>
+                <result column="college_id" property="collegeId"/>
+                <result column="course_score" property="courseScore"/>
             </association>
         </collection>
     </resultMap>
@@ -56,11 +56,11 @@
           selectedcourse,
           course
         WHERE
-          student.userID = #{id}
+          student.student_id = #{student_id}
         AND
-          student.userID = selectedcourse.studentID
+          student.student_id = selectedcourse.student_id
         AND
-          selectedcourse.courseID = course.courseID
+          selectedcourse.course_id = course.college_id
     </select>
 
 </mapper>

@@ -1,5 +1,7 @@
 package com.system.model;
 
+import java.util.List;
+
 /**
  * @Author: Alex
  * @Date: 2019/7/2 23:00
@@ -10,6 +12,9 @@ public class CourseCustom extends Course {
      */
     private String collegeName;
 
+    //选课列表
+    private List<SelectedCourseCustom> selectedCourseList;
+
     public void setcollegeName(String collegeName) {
         this.collegeName = collegeName;
     }
@@ -18,5 +23,11 @@ public class CourseCustom extends Course {
         return collegeName;
     }
 
+    public List<SelectedCourseCustom> getSelectedCourseList() {
+        return selectedCourseList;
+    }
 
+    public void setSelectedCourseList(List<SelectedCourseCustom> selectedCourseList) {
+        this.selectedCourseList = selectedCourseList;
+    }
 }

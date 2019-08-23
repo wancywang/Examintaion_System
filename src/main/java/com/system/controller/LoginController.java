@@ -37,15 +37,26 @@ public class LoginController {
         try {
             subject.login(token);
         }catch (AuthenticationException e){
-           return new ResponseEntity<>(new ResponseEnvelope<String >(404, "not_found"), HttpStatus.NOT_FOUND);
+           return new ResponseEntity<>(new ResponseEnvelope<String>(404, "not_found"), HttpStatus.NOT_FOUND);
         }
         if(subject.hasRole(ADMIN)){
-            return new ResponseEntity<>(new ResponseEnvelope<String >(200, "success", "test"), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseEnvelope<String>(200, "success",ADMIN), HttpStatus.OK);
         }else if(subject.hasRole(TEACHER)){
-            return new ResponseEntity<>(new ResponseEnvelope<String >(200, "success.", "test"), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseEnvelope<String>(200, "success.",TEACHER), HttpStatus.OK);
         }else if(subject.hasRole(STUDENT)){
-            return new ResponseEntity<>(new ResponseEnvelope<String >(200, "success.", "test"), HttpStatus.OK);
+            return new ResponseEntity<>(new ResponseEnvelope<String>(200, "success.",STUDENT), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new ResponseEnvelope<String >(400, "bad_request"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ResponseEnvelope<String>(400, "bad_request"), HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * 退出登录
+     */
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public void logout(){
+        Subject subject = SecurityUtils.getSubject();
+        if(subject.isAuthenticated()){
+            subject.logout();
+        }
     }
 }

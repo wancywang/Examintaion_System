@@ -36,6 +36,15 @@ public interface CourseService {
     Boolean save(CourseCustom courseCustom) throws Exception;
 
     /**
+     * 找出学生选修课程
+     * 根据学生id
+     * @param studentId
+     * @return
+     * @throws Exception
+     */
+    List<CourseCustom> findStudentAndSelectCourseListById(Integer studentId) throws Exception;
+
+    /**
      * 获取课程总数
      * @return
      * @throws Exception

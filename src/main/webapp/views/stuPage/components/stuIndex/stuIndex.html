@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="components/template/file/fileCommon.css" />
+
 <style>
 	/** 卡片轮播图样式 */
 	.admin-carousel .layui-carousel-ind {
@@ -58,8 +60,8 @@
 	#moreFiles:hover {
 		color: #009688;
 	}
+	
 </style>
-<link rel="stylesheet" href="./assets/calendar/css/calendar.css" />
 <style>
 	.user-info-head {
 		width: 110px;
@@ -195,7 +197,36 @@
 					<span class="layui-badge layui-bg-green">校历</span>
 				</div>
 				<div class="layui-card-body">
-					<div id="calendarDiv" class="calendarDiv"></div>
+					 <!-- <div id="calendarDiv" class="calendarDiv"></div> -->
+					<li>
+						<div class="calendar">
+							<div class="title">
+								<a class="green" id="calendar-year">年</a>
+								<a class="green" id="calendar-title">月</a>
+								<a href="" ><img src="assets/images/prev.png" id="pre"  alt=""></img></a>
+								<a href="" ><img src="assets/images/next.png" id="next" alt=""></img></a>
+								<a href="" ><img src="assets/images/prev_year.png" id="pre_year"  alt=""></img></a>
+								<a href="" ><img src="assets/images/next_year.png" id="next_year" alt=""></img></a>
+							</div>
+							<div class="body">
+								<div class="lightgrey body-list-title">
+									<ul>
+										<li>日</li>
+										<li>一</li>
+										<li>二</li>
+										<li>三</li>
+										<li>四</li>
+										<li>五</li>
+										<li>六</li>
+									</ul>
+								</div>
+								<div class="darkgrey body-list">
+									<ul id="days">
+									</ul>
+								</div>
+							</div>
+						</div>
+					</li>
 				</div>
 			</div>
 			<div class="layui-card">
@@ -226,104 +257,63 @@
 				</div>
 			</div>
 		</div>
-		<div class="layui-col-lg7 layui-col-md7">
+		<div class="layui-col-lg8 layui-col-md8">
 			<div class="layui-card">
 				<div class="layui-card-header">通知公告</div>
 				<div class="layui-card-body">
 					<ul class="layui-timeline" id="NoticDiv">
 						<!-- 公告  -->
-
 					</ul>
 				</div>
 			</div>
 		</div>
-
-		<div class="layui-col-lg3 layui-col-md3">
+		<div class="layui-col-lg2 layui-col-md2">
 			<div class="layui-card">
-				<div class="layui-card-header">前端框架</div>
+				<div class="layui-card-header">今日课程</div>
 				<div class="layui-card-body">
 					<table class="layui-table layui-text">
 						<colgroup>
 							<col width="100">
 							<col>
 						</colgroup>
-						<tbody>
-							<tr>
-								<td>基础框架</td>
-								<td><a href="http://www.layui.com/" target="_blank">layui-v2.5.4</a></td>
-							</tr>
-							<tr>
-								<td>路由框架</td>
-								<td>
-									lay-Router（基于<a href="https://github.com/itorr/q.js" target="_blank">q.js</a>进行改进封装）
-								</td>
-							</tr>
-							<tr>
-								<td>主要特色</td>
-								<td>单页面 / 响应式 / 简约 / 易上手</td>
-							</tr>
-							<tr>
-								<td>获取源码</td>
-								<td>
-									<a href="https://easyweb.vip" target="_blank" class="layui-btn layui-btn-sm">前往官网</a>
-								</td>
-							</tr>
-						</tbody>
+
 					</table>
 				</div>
 			</div>
 
 			<div class="layui-card">
-				<div class="layui-card-header">后台框架</div>
+				<div class="layui-card-header">我的消息</div>
 				<div class="layui-card-body">
 					<table class="layui-table layui-text">
 						<colgroup>
 							<col width="100">
 							<col>
 						</colgroup>
-						<tbody>
-							<tr>
-								<td>核心框架</td>
-								<td>Spring、Spring MVC、Spring Boot</td>
-							</tr>
-							<tr>
-								<td>持久层</td>
-								<td>MyBatis、Druid、<a href="http://mp.baomidou.com" target="_blank">MyBatis-Plus</a>
-								</td>
-							</tr>
-							<tr>
-								<td>权限框架</td>
-								<td>SpringSecurity、oAuth2.0</td>
-							</tr>
-							<tr>
-								<td>其他</td>
-								<td>IDEA(开发工具)、MySQL(数据库)</td>
-							</tr>
-						</tbody>
+
 					</table>
 				</div>
 			</div>
-
 			<div class="layui-card">
-				<div class="layui-card-header">友情链接</div>
+				<div class="layui-card-header">快捷访问</div>
 				<div class="layui-card-body">
 					<div class="layui-carousel admin-carousel admin-news">
 						<div carousel-item>
 							<div>
-								<a href="http://www.layui.com/" target="_blank" class="layui-bg-green">
-									layui - 经典模块化前端框架
+								<a href="javascript:void(0)" target="_blank" class="layui-bg-green">
+									校园网
 								</a>
 							</div>
 							<div>
-								<a href="http://fly.layui.com/extend/" target="_blank" class="layui-bg-cyan">
-									layui第三方组件平台
+								<a href="javascript:void(0)" target="_blank" class="layui-bg-cyan">
+									官网资源快讯
 								</a>
 							</div>
 							<div>
-								<a href="http://fly.layui.com/case/2018/" target="_blank" class="layui-bg-blue">
-									发现layui年度最佳案例
+								<a href="javascript:void(0)" target="_blank" class="layui-bg-blue">
+									后院娱乐社区
 								</a>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -331,7 +321,23 @@
 		</div>
 	</div>
 </div>
-
+<!-- 渲染模板 -->
+<script id="fileList" type="text/html">
+	{{#  layui.each(d, function(index, item){ }}
+	{{# var fid = item.fileId }} 
+    <div class="file-list-item"  data-name="{{item.fileName}}" onclick="DownloadOnClick({{ item.fileId }})">
+			{{# var suffix = item.fileName.substring(item.fileName.lastIndexOf(".")+1) }} 
+            <img src="components/template/file/fti/{{ suffix }}.png"/>
+        <div class="file-list-name">{{item.fileName}}</div>
+    </div>
+    {{#  }); }}
+    {{# if(d.length<=0){ }}
+    <div class="list-empty">
+        <i class="layui-icon layui-icon-face-surprised"></i>
+        <div>没有文件</div>
+    </div>
+    {{# } }}
+</script>
 <script>
 	layui.use(['layer', 'carousel', 'laydate'], function() {
 		var $ = layui.jquery;
@@ -356,7 +362,6 @@
 			theme: 'default',
 			calendar: true
 		});
-
 	});
 </script>
 <!-- 流加载公告 -->
@@ -443,7 +448,7 @@
 		var pageNum = 8;
 		var lis = [];
 		var htmlElem = "";
-		$.get('./json/downloadTest.json', function(res) { //$.get('/api/list?page=' + page, function(res) {}
+		$.get('/selectPartFile', function(res) { //$.get('/api/list?page=' + page, function(res) {}./json/downloadTest.json
 
 			layui.each(res.data, function(index, item) {
 				if (index < pageNum) {
@@ -469,72 +474,164 @@
 		layui.use('admin', function() {
 			var $ = layui.jquery;
 			var admin = layui.admin;
-			admin.ajax({
-				url: '/downloadFile?fId=' + num,
-				data: {},
-				type: 'post',
-				dataType: 'json',
-				success: function(res) {
-					if (res.code == 200)
-						alert("文件开始下载！");
-					else
-						alert('下载出错！原因：' + res.msg)
-				}
-			});
+			// var url = '/downloadFile?fildId=' + num;
+			// $.get(url, {
+			// 	property: 0,
+			// }, function(res) {
+			// 	if (res.code == 200)
+			// 		alert("文件开始下载！");
+			// 	else
+			// 		alert('下载出错！原因：' + res.msg)
+			// });
+			window.location.href='/downloadFile?fileId=' + num;
 		});
 	}
 	//更多
-	layui.use('admin', function() {
+	layui.use(['admin', 'laytpl'], function() {
 		var $ = layui.jquery;
 		var admin = layui.admin;
-		var htmlEleme = '<div class="file-list"></div>';
+		var laytpl = layui.laytpl;
+		var htmlEleme = '<div class="fileListDiv" id="fileListDiv"><span>文件列表</span></div>';
+		var htmlElem =
+			'<div class="layui-fluid"><div class="layui-card"><div class="layui-card-header">全部文档</div><div class="layui-card-body">' +
+			'<div class="fileListDiv" id="fileListDiv"></div></div></div>';
 		$('#moreFiles').click(function() {
 			admin.open({
-				shadeClose: true,
-				type: 2,
+				type: 1,
 				title: '选择文件',
-				content: htmlEleme,
-				area: ['600px', '420px'],
-				offset: '50px',
-				shade: .1,
+				content: htmlElem,
+				area: ['1150px', '700px'],
 				fixed: false,
 				resize: false,
-				end: function() {
-					layui.use(['jquery', 'layer', 'element', 'upload', 'laytpl', 'util'], function() {
-						var $ = layui.jquery;
-						var layer = layui.layer;
-						var element = layui.element;
-						var upload = layui.upload;
-						var laytpl = layui.laytpl;
-						var util = layui.util;
-
-						// 渲染文件列表
-						function renderList(dir) {
-							if (!dir) {
-								dir = $('#tvFP').text();
-							}
-							layer.load(2);
-							$.get('./json/moreFileTest.json', {
-								dir: dir
-							}, function(res) {
-								layer.closeAll('loading');
-								if (res.code == 200) {
-									laytpl(fileTpl.innerHTML).render(res.data, function(html) {
-										$('.file-list').html(html);
-									});
-								} else {
-									layer.msg(res.msg, {
-										icon: 2
-									});
-								}
-							});
-						}
-
-						renderList();
-					});
-				}
+				shade: .5,
+				shadeClose: true,
+			});
+			//渲染更多
+			layui.use(['jquery', 'layer', 'laytpl'], function() {
+				var $ = layui.jquery;
+				var layer = layui.layer;
+				var laytpl = layui.laytpl;
+				// 渲染文件列表
+				$.get('/selectAllFile', {}, function(res) { //./json/moreFileTest.json
+					layer.closeAll('loading');
+					if (res.code == 200) {
+						var fileListHtml = fileList.innerHTML;
+						fileListView = document.getElementById('fileListDiv');
+						laytpl(fileListHtml).render(res.data, function(html) {
+							fileListView.innerHTML = html;
+						});
+					} else {
+						layer.msg(res.msg, {
+							icon: 2
+						});
+					}
+				});
 
 			});
 		});
+
 	});
+</script>
+<!-- js部分 -->
+<script>
+	layui.use(['layer', 'form', 'admin'], function() {
+		var $ = layui.jquery;
+		var layer = layui.layer;
+		var form = layui.form;
+		var admin = layui.admin;
+
+		// 选择头像
+		$('#imgHead').click(function() {
+			admin.cropImg({
+				onCrop: function(res) {
+					$('#imgHead>img').attr('src', res);
+				}
+			});
+		});
+
+	});
+	//日历
+	var month_olypic = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	var month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+	var month_name = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+	var holder = document.getElementById("days");
+	var prev = document.getElementById("prev");
+	var next = document.getElementById("next");
+	var ctitle = document.getElementById("calendar-title");
+	var cyear = document.getElementById("calendar-year");
+	var my_date = new Date();
+	var my_year = my_date.getFullYear(); 
+	var my_month = my_date.getMonth(); 
+	var my_day = my_date.getDate();
+	function dayStart(month, year) {
+		var tmpDate = new Date(year, month, 1);
+		return (tmpDate.getDay());
+	}
+	function daysMonth(month, year) {
+		var tmp1 = year % 4;
+		var tmp2 = year % 100;
+		var tmp3 = year % 400;
+		if ((tmp1 == 0 && tmp2 != 0) || (tmp3 == 0)) {
+			return (month_olypic[month]); //闰年
+		} else {
+			return (month_normal[month]); //非闰年
+		}
+	}
+	//js实现str插入li+class,不要忘了用innerhtml进行插入
+	function refreshDate() {
+		var str = "";
+		var totalDay = daysMonth(my_month, my_year);
+		var firstDay = dayStart(my_month, my_year);
+		for (var i = 0; i < firstDay; i++) {
+			str += "<li>" + "</li>";
+		}
+		var myclass;
+		for (var i = 1; i <= totalDay; i++) {
+			console.log(my_year + " " + my_month + " " + my_day);
+			console.log(my_date.getFullYear() + " " + my_date.getMonth() + " " + my_date.getDay());
+			if ((my_year < my_date.getFullYear()) || (my_year == my_date.getFullYear() && my_month < my_date.getMonth()) || (
+					my_year == my_date.getFullYear() && my_month == my_date.getMonth() && i < my_day)) {
+				myclass = " class='lightgrey'";
+			} else if (my_year == my_date.getFullYear() && my_month == my_date.getMonth() && i == my_day) {
+				myclass = "class = 'green greenbox'";
+			} else {
+				myclass = "class = 'darkgrey'";
+			}
+			str += "<li " + myclass + ">" + i + "</li>";
+		}
+		holder.innerHTML = str;
+		ctitle.innerHTML = month_name[my_month];
+		cyear.innerHTML = my_year+'年';
+	}
+	//调用refreshDate()函数，日历才会出现
+	refreshDate();
+	//实现onclick向前或向后移动
+	pre_year.onclick = function(e) {
+		e.preventDefault();
+		my_year--;
+		refreshDate();
+	}
+	next_year.onclick = function(e) {
+		e.preventDefault();
+		my_year++;
+		refreshDate();
+	}
+	pre.onclick = function(e) {
+		e.preventDefault();
+		my_month--;
+		if (my_month < 0) {
+			my_year--;
+			my_month = 11; //即12月份
+		}
+		refreshDate();
+	}
+	next.onclick = function(e) {
+		e.preventDefault();
+		my_month++;
+		if (my_month > 11) {
+			my_month = 0;
+			my_year++;
+		}
+		refreshDate();
+	}
 </script>

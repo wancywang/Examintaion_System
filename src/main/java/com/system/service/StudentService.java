@@ -53,6 +53,14 @@ public interface StudentService {
     StudentCustom findStudentById(Integer id) throws Exception;
 
     /**
+     * 修改学生密码
+     * @param id
+     * @param password
+     * @return
+     */
+    int modifyStudentPws(String id,String password);
+
+    /**
      * 根据名字模糊查询
      * @param name
      * @return
@@ -67,5 +75,9 @@ public interface StudentService {
      * @throws Exception
      */
     StudentCustom findStudentAndSelectCourseListByName(String name) throws Exception;
+
+    //查询学生信息，和其选课信息
+    StudentCustom findStudentAndSelectCourseListById(Integer id) throws Exception;
+
 
 }

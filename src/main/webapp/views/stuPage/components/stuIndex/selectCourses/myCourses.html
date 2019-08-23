@@ -1,0 +1,167 @@
+<!-- 正文开始 -->
+<div class="layui-fluid">
+	<div class="layui-card">
+		<div class="layui-card-body">
+
+			<div class="layui-form toolbar">
+				<div class="layui-form-item">
+					<div class="layui-inline pull-right
+					">
+						<button id="btnExportTbBas" class="layui-btn icon-btn">
+							<i class="layui-icon">&#xe67d;</i>导出
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<table class="layui-table" id="tableTbBas" lay-filter="tableTbBas"></table>
+		</div>
+	</div>
+
+</div>
+
+
+<script type="text/html" id="tableBarTbBas">
+	<a lay-event="showCouresInfo"><i class="layui-icon layui-icon-video" style="font-size: 20px; color: #41A863;font-weight: 600"></i></a>  
+</script>
+
+<!-- js部分 -->
+<script>
+	layui.use(['layer', 'form', 'table', 'util', 'dropdown', 'admin'], function() {
+		var $ = layui.jquery;
+		var layer = layui.layer;
+		var form = layui.form;
+		var table = layui.table;
+		var util = layui.util;
+		var admin = layui.admin;
+		var dropdown = layui.dropdown;
+		var config = layui.config;
+		var insTb = table.render({
+			elem: '#tableTbBas',
+			url: config.base_server + 'courseTest.json', //课程获取接口,分页,状态码必须为0
+			page: true,
+			cellMinWidth: 120,
+			cols: [
+				[{
+						type: 'checkbox'
+					},
+					{
+						field: 'coures_id',
+						align: 'center',
+						sort: false,
+						title: '课程编号',
+						width: 130
+					},
+					{
+						field: 'coures_name',
+						align: 'center',
+						sort: false,
+						title: '课程名'
+					},
+					{
+						field: 'teacher_id',
+						align: 'center',
+						sort: false,
+						title: '任课老师',
+						width: 150
+					},
+					{
+						field: 'coures_year',
+						align: 'center',
+						sort: true,
+						title: '开课时间',
+						width: 180
+					},
+					{
+						field: 'coures_classroom',
+						align: 'center',
+						sort: true,
+						title: '上课地点',
+						width: 110
+					},
+					{
+						field: 'coures_period',
+						align: 'center',
+						sort: true,
+						title: '学时',
+						width: 90
+					},
+					{
+						field: 'coures_type',
+						align: 'center',
+						sort: true,
+						title: '课程类型',
+						width: 100
+					},
+					{
+						field: 'college_id',
+						align: 'center',
+						sort: false,
+						title: '开课院系',
+						width: 160
+					},
+					{
+						field: 'coures_score',
+						align: 'center',
+						sort: true,
+						title: '学分',
+						width: 90
+					},
+					{
+						field: 'coures_isSelect',
+						align: 'center',
+						sort: true,
+						title: '是否选修',
+						width: 100
+					},
+					{
+						align: 'center',
+						toolbar: '#tableBarTbBas',
+						title: '课程介绍',
+						width: 100
+					}
+				]
+			],
+
+		});
+		table.on('tool(tableTbBas)', function(obj) {
+			var data = obj.data;
+			var layEvent = obj.event;
+			if (layEvent === 'showCouresInfo') {
+				var videoUrl = data.coures_videourl;
+				var couresId = data.coures_id;
+				admin.open({
+					type: 1,
+					title: '《' + data.coures_name + '》课程介绍',
+					shade: 0,
+					maxmin: true,
+					resize: false,
+					area: ['800px', '550px'],
+					content: '<div id="video" style="width:100%;height:100%"></div>',
+					shade: [0.8, '#393D49'],
+					shadeClose: false,
+				});
+				var videoObject = {
+					container: '#video',
+					variable: 'player',
+					autoplay: false,
+					flashplayer: false,
+					video: 'assets/videos/couresVideos/'+ videoUrl
+				};
+				var player = new ckplayer(videoObject);
+			
+			}
+		});
+		$('#btnExportTbBas').click(function() {
+			var checkRows = table.checkStatus('tableTbBas');
+			if (checkRows.data.length == 0) {
+				layer.msg('请选择要导出的数据', {
+					icon: 2
+				});
+			} else {
+				table.exportFile(insTb.config.id, checkRows.data, 'xls');
+			}
+		});
+
+	});
+</script>

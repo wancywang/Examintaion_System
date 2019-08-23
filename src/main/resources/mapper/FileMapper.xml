@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper   namespace="com.system.dao.FileMapper">
+
+    <select id="selectOneFile" parameterType="int"  resultType="com.system.model.FileUpload">
+        select * from file where fileId = #{fileId};
+   </select>
+
+    <select id="selectPartFile"   resultType="com.system.model.FileUpload">
+        select * from file limit 0,8;
+   </select>
+
+    <select id="selectAllFile"   resultType="com.system.model.FileUpload">
+        select * from file;
+   </select>
+
+    <insert id="uploadFile" parameterType="com.system.model.FileUpload">
+        insert into file(fileName,furl,fdate)  values(#{fileName},#{furl},#{fdate});
+    </insert>
+
+
+
+
+</mapper>
+

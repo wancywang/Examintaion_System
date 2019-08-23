@@ -1,9 +1,8 @@
 import com.system.dao.CollegeMapper;
 import com.system.dao.NoticeMapper;
-import com.system.model.College;
-import com.system.model.CollegeExample;
-import com.system.model.Student;
-import com.system.model.StudentCustom;
+import com.system.model.*;
+import com.system.service.CourseService;
+import com.system.service.SelectedCourseService;
 import com.system.service.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,16 +26,21 @@ public class NoticeDaoTest {
     private CollegeMapper collegeMapper;
 
     @Autowired
+    private SelectedCourseService selectedCourseService;
+
+    @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private CourseService courseService;
+
     @Test
-    public void testSelectUser() throws Exception{
-        long id = 1;
-        College college = collegeMapper.selectByPrimaryKey(1);
-        System.out.println(college.getCollegeName());
-        CollegeExample collegeExample = new CollegeExample();
-        List<College> collegeList =collegeMapper.selectByExample(collegeExample);
-        for(College college1:collegeList){
-            System.out.println(college1.getCollegeName());
+    public void testCourse() throws Exception{
+        Integer id = 1;
+        Integer studentId = 10001;
+        List<CourseCustom> courseCustoms = courseService.findStudentAndSelectCourseListById(studentId);
+        for (CourseCustom courseCustom:courseCustoms){
+            System.out.println(courseCustom);
         }
     }
 

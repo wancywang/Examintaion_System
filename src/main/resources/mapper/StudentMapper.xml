@@ -7,8 +7,8 @@
       <arg column="student_image" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="student_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="student_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="student_birthday" jdbcType="DATE" javaType="java.util.Date" />
-      <arg column="student_grade" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="student_birthday" jdbcType="DATE" javaType="java.sql.Date" />
+      <arg column="student_grade" jdbcType="DATE" javaType="java.sql.Date" />
       <arg column="college_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>

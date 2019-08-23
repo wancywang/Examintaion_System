@@ -2,10 +2,8 @@ package com.system.service.impl;
 
 import com.system.dao.CollegeMapper;
 import com.system.dao.StudentMapper;
-import com.system.model.College;
-import com.system.model.Student;
-import com.system.model.StudentCustom;
-import com.system.model.StudentExample;
+import com.system.dao.StudentMapperCustom;
+import com.system.model.*;
 import com.system.service.StudentService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +21,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentMapper studentMapper;
+
+    @Autowired
+    private StudentMapperCustom studentMapperCustom;
 
     @Autowired
     private CollegeMapper collegeMapper;
@@ -64,12 +65,20 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentCustom findStudentById(Integer id) throws Exception {
         Student student = studentMapper.selectByPrimaryKey(id);
+        College college = collegeMapper.selectByPrimaryKey(student.getCollegeId());
         StudentCustom studentCustom = null;
         if(student != null){
             studentCustom = new StudentCustom();
             BeanUtils.copyProperties(student,studentCustom);
+            studentCustom.setCollegeId(college.getCollegeId());
+            studentCustom.setcollegeName(college.getCollegeName());
         }
         return studentCustom;
+    }
+
+    @Override
+    public int modifyStudentPws(String id, String password) {
+        return 0;
     }
 
     @Override
@@ -92,8 +101,23 @@ public class StudentServiceImpl implements StudentService {
         return studentCustomList;
     }
 
+
+
     @Override
     public StudentCustom findStudentAndSelectCourseListByName(String name) throws Exception {
+        StudentCustom studentCustom = studentMapperCustom.findStudentAndSelectCourseListById(Integer.parseInt(name));
+        List<SelectedCourseCustom> selectedCourseCustomList = studentCustom.getSelectedCourseList();
+        //判断该课程是否修完
+        for (SelectedCourseCustom selectedCourseCustom:selectedCourseCustomList){
+            if (selectedCourseCustom.getSelectedcourseMark() != null){
+                selectedCourseCustom.setOver(true);
+            }
+        }
+        return studentCustom;
+    }
+
+    @Override
+    public StudentCustom findStudentAndSelectCourseListById(Integer id) throws Exception {
         return null;
     }
 }

@@ -23,8 +23,7 @@ public class CollegeController {
     @Autowired
     private CollegeService collegeService;
 
-
-    @RequestMapping
+    @RequestMapping(value = "/collegelists",method = RequestMethod.GET)
     @ResponseBody
     public String getCollege(@RequestParam(value="pn",defaultValue="1")Integer pn, Model model) throws Exception {
         //引入PageHelper分页插件
