@@ -378,7 +378,7 @@
 			done: function(page, next) { //加载下一页//模拟插入
 				setTimeout(function() {
 					var lis = [];
-					$.get('./json/noticTest.json', function(res) { //$.get('/api/list?page=' + page, function(res) {}
+					$.get('/notice/notices?page=' + page, function(res) { //$.get('/api/list?page=' + page, function(res) {}
 						layui.each(res.data, function(index, item) {
 							var contentEleme = item.noticContent.substring(0, 100) + "...";
 							var htmlElem =

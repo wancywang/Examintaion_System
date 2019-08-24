@@ -1,5 +1,8 @@
 package com.system.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.system.model.Notice;
@@ -45,15 +48,16 @@ public class NoticeController {
         PageHelper.startPage(page,5);
         List<Notice> noticeList = noticeService.queryAll();
         try {
-            PageInfo<Notice> pageInfo = new PageInfo<Notice>(noticeList);
+            PageInfo<Notice> pageInfo = new PageInfo(noticeList,5);
             int total = (int) pageInfo.getTotal();
             Map<String, Object> results = new HashMap<>();
             results.put("count", "5");
             results.put("code", "200");
             results.put("msg", "获取下一页成功");
             results.put("data", pageInfo.getList());
-            System.out.println(JSONArray.toJSONString(results));
-            return JSONArray.toJSONString(results);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonStr = objectMapper.writeValueAsString(results);
+            return jsonStr;
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build().toString();
         }

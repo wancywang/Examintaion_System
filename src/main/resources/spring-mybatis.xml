@@ -33,6 +33,17 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据库连接池 -->
         <property name="dataSource" ref="dataSource"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            　　　　　　　　　　　　　　　　helperDialect=mysql
+                            　　　　　　　　　　　　　　</value>
+                    </property>
+                </bean>
+            </array>
+        </property>
         <!-- 扫描model包 使用别名 -->
 
         <!-- 扫描sql配置文件:mapper需要的xml文件 -->
@@ -48,6 +59,7 @@
         <!-- 给出需要扫描Dao接口包 -->
         <property name="basePackage" value="com.system.dao"/>
     </bean>
+
 
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
