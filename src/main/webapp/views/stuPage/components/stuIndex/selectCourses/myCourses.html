@@ -38,7 +38,7 @@
 		var config = layui.config;
 		var insTb = table.render({
 			elem: '#tableTbBas',
-			url: config.base_server + 'courseTest.json', //课程获取接口,分页,状态码必须为0
+			url: config.base_server + 'course/mycourse?page' + page, //课程获取接口,分页,状态码必须为0
 			page: true,
 			cellMinWidth: 120,
 			cols: [
