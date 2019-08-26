@@ -1,6 +1,7 @@
 package com.system.dao;
 
 import com.system.model.Course;
+import com.system.model.CourseCustom;
 import com.system.model.CourseExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -30,4 +31,5 @@ public interface CourseMapper {
     int updateByPrimaryKeySelective(Course record);
 
     int updateByPrimaryKey(Course record);
+
 }

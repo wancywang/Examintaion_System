@@ -1,6 +1,7 @@
 package com.system.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author: Alex
@@ -28,6 +29,16 @@ public class Course {
     private Integer courseScore;
 
     private String courseVideourl;
+
+    private List<TeacherCustom> teacherCustomList;
+
+    public List<TeacherCustom> getTeacherCustomList() {
+        return teacherCustomList;
+    }
+
+    public void setTeacherCustomList(List<TeacherCustom> teacherCustomList) {
+        this.teacherCustomList = teacherCustomList;
+    }
 
     public Course(Integer courseId, String courseName, Integer teacherId, String courseTime, Date courseYear, String courseClassoom, Integer coursePeriod, String courseType, Integer collegeId, Integer courseScore, String courseVideourl) {
         this.courseId = courseId;

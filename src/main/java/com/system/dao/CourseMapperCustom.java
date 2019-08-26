@@ -26,4 +26,6 @@ public interface CourseMapperCustom {
      */
     List<CourseCustom> findStudentAndSelectCourseListById(Integer id) throws Exception;
 
+    List<CourseCustom> findAllCourse();
+
 }

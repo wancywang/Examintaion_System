@@ -49,7 +49,6 @@ public class NoticeController {
         List<Notice> noticeList = noticeService.queryAll();
         try {
             PageInfo<Notice> pageInfo = new PageInfo(noticeList,5);
-            int total = (int) pageInfo.getTotal();
             Map<String, Object> results = new HashMap<>();
             results.put("count", "5");
             results.put("code", "200");

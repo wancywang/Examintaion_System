@@ -1,6 +1,8 @@
 package com.system.model;
 
 import java.util.Date;
+import java.util.List;
+
 /**
  * @Author: Alex
  * @Date: 2019/6/28 2:09
@@ -21,6 +23,16 @@ public class Teacher {
     private Date teacherHiredate;
 
     private Integer collegeId;
+
+    private List<CourseCustom> courseCustomList;
+
+    public List<CourseCustom> getCourseCustomList() {
+        return courseCustomList;
+    }
+
+    public void setCourseCustomList(List<CourseCustom> courseCustomList) {
+        this.courseCustomList = courseCustomList;
+    }
 
     public Teacher(Integer teacherId, String teacherName, String teacherSex, Date teacherBirthday, String teacherDegree, String teacherPosition, Date teacherHiredate, Integer collegeId) {
         this.teacherId = teacherId;

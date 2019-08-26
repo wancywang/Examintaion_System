@@ -74,4 +74,7 @@ public interface CourseService {
      * @throws Exception
      */
     List<CourseCustom> findByTeacherId(Integer id) throws Exception;
+
+    List<CourseCustom> findAllCourse();
+
 }

@@ -3,6 +3,7 @@ package com.system.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.system.model.College;
+import com.system.model.CourseCustom;
 import com.system.service.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,6 +43,8 @@ public class CollegeController {
     @ResponseBody
     public String showCollege(@PathVariable("collegeId")int collegeId) throws Exception{
        College college = collegeService.queryById(collegeId);
+        CourseCustom courseCustom = new CourseCustom();
+        courseCustom.getSelectedCourseList();
         return college.toString();
     }
 }

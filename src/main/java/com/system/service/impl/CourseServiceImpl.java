@@ -1,9 +1,7 @@
 package com.system.service.impl;
 
-import com.system.dao.CollegeMapper;
-import com.system.dao.CourseMapper;
-import com.system.dao.CourseMapperCustom;
-import com.system.dao.SelectedCourseMapper;
+import com.alibaba.fastjson.JSONArray;
+import com.system.dao.*;
 import com.system.model.*;
 import com.system.service.CourseService;
 import org.apache.ibatis.annotations.Select;
@@ -32,6 +30,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     private CollegeMapper collegeMapper;
+
+    @Autowired
+    private TeacherMapper teacherMapper;
 
     @Override
     public void updateById(Integer id, CourseCustom courseCustom) throws Exception {
@@ -99,7 +100,7 @@ public class CourseServiceImpl implements CourseService {
                 CourseCustom courseCustom = new CourseCustom();
                 BeanUtils.copyProperties(course, courseCustom);
                 College college = collegeMapper.selectByPrimaryKey(course.getCollegeId());
-                courseCustom.setcollegeName(college.getCollegeName());
+                courseCustom.setCollegeName(college.getCollegeName());
                 courseCustomList.add(courseCustom);
             }
         }
@@ -121,11 +122,33 @@ public class CourseServiceImpl implements CourseService {
                 CourseCustom courseCustom = new CourseCustom();
                 BeanUtils.copyProperties(courseCustom, course);
                 College college = collegeMapper.selectByPrimaryKey(course.getCollegeId());
-                courseCustom.setcollegeName(college.getCollegeName());
-
+                courseCustom.setCollegeName(college.getCollegeName());
+                Teacher teacher = teacherMapper.selectByPrimaryKey(course.getTeacherId());
+                courseCustom.setTeacherName(teacher.getTeacherName());
                 courseCustomList.add(courseCustom);
             }
         }
             return null;
         }
+
+    @Override
+    public List<CourseCustom> findAllCourse() {
+        List<Course> courseList = courseMapper.selectByExample(null);
+        List<CourseCustom> courseCustomList = null;
+        if(courseList.size() > 0) {
+            courseCustomList = new ArrayList<CourseCustom>();
+            for (Course course : courseList) {
+                CourseCustom courseCustom = new CourseCustom();
+                BeanUtils.copyProperties(course, courseCustom);
+                College college = collegeMapper.selectByPrimaryKey(course.getCollegeId());
+                courseCustom.setCollegeName(college.getCollegeName());
+                Teacher teacher = teacherMapper.selectByPrimaryKey(course.getTeacherId());
+                courseCustom.setTeacherName(teacher.getTeacherName());
+                courseCustomList.add(courseCustom);
+            }
+            return courseCustomList;
+        }else {
+            return null;
+        }
+    }
 }

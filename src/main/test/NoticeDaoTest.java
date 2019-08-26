@@ -1,5 +1,5 @@
-import com.system.dao.CollegeMapper;
-import com.system.dao.NoticeMapper;
+import com.alibaba.fastjson.JSONArray;
+import com.system.dao.*;
 import com.system.model.*;
 import com.system.service.CourseService;
 import com.system.service.SelectedCourseService;
@@ -12,7 +12,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: Alex
@@ -29,26 +32,38 @@ public class NoticeDaoTest {
     private SelectedCourseService selectedCourseService;
 
     @Autowired
+    private CourseMapper courseMapper;
+
+    @Autowired
     private StudentService studentService;
 
     @Autowired
     private CourseService courseService;
 
+    @Autowired
+    private TeacherMapperCustom teacherMapperCustom;
+
     @Test
     public void testCourse() throws Exception{
-        Integer id = 1;
-        Integer studentId = 10001;
-        List<CourseCustom> courseCustoms = courseService.findStudentAndSelectCourseListById(studentId);
-        for (CourseCustom courseCustom:courseCustoms){
-            System.out.println(courseCustom);
-        }
+        List<TeacherCustom> teacherCustoms = teacherMapperCustom.findAllCourseCustom();
+        Map<String,Object> m =new HashMap<String,Object>();
+        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+        for (int i = 0;i < teacherCustoms.size();i++){
+                for (int j = 0;j <teacherCustoms.size();j++){
+
+                }
+            }
     }
 
     @Test
     public void test() throws Exception{
-        Integer id = 10002;
-        StudentCustom student = studentService.findStudentById(id);
-        System.out.println(student.toString());
-
+        CourseExample example = new CourseExample();
+        CourseExample.Criteria criteria = example.createCriteria();
+        criteria.andCollegeIdEqualTo(1);
+//        List<Course> courseList = courseMapper.findAllCourse();
+//            System.out.println(JSONArray.toJSON(courseList));
+//        List<Course> courseList = courseMapper.selectByExample(null);
+        List<CourseCustom> courseList = courseService.findAllCourse();
+        System.out.println(JSONArray.toJSON(courseList));
     }
 }

@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-
-
-<!--teacherMapper-->
-
-<mapper namespace="com.system.mapper.TeacherMapperCustom">
+<mapper namespace="com.system.dao.TeacherMapperCustom">
+    <resultMap id="teacherCustomResultMap" type="com.system.model.TeacherCustom">
+        <id property="teacherId" column="teacher_id"/>
+        <result property="teacherName" column="teacher_name"/>
+        <collection property="courseCustomList"  ofType="com.system.model.CourseCustom">
+            <id property="courseId" column="course_id"/>
+            <result property="courseName" column="course_name"/>
+            <result property="courseTime" column="course_time"/>
+            <result property="courseYear" column="course_year"/>
+            <result property="courseClassoom" column="course_classoom"/>
+            <result property="coursePeriod" column="course_period"/>
+            <result property="courseType" column="course_type"/>
+            <result property="courseScore" column="course_score"/>
+            <result property="courseVideourl" column="course_videourl"/>
+            <association property="college" javaType="com.system.model.College">
+                <id column="collegeId" property="college_id"/>
+                <result property="collegeName" column="college_name"/>
+            </association>
+        </collection>
+    </resultMap>
     <select id="findByPaging" parameterType="PagingVO" resultType="TeacherCustom">
-        select teacher.*, college.collegeName
+        select teacher.*,course.*, college.collegeName
         from teacher, college
         WHERE teacher.collegeID = college.collegeID
         limit #{toPageNo}, #{pageSize}
+    </select>
+    <select id="findAllCourseCustom" resultMap="teacherCustomResultMap">
+        SELECT course.*,teacher.*,college_name
+        from course
+        left join teacher
+        on teacher.teacher_id = course.teacher_id
+        left join college
+        on course.college_id = college.college_id
     </select>
 </mapper>

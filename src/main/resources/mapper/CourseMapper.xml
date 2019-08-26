@@ -9,7 +9,7 @@
       <arg column="course_time" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="course_year" jdbcType="DATE" javaType="java.util.Date" />
       <arg column="course_classoom" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="course_ period" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="course_period" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="course_type" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="college_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="course_score" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -75,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    course_id, course_name, teacher_id, course_time, course_year, course_classoom, "course_ period", 
+    course_id, course_name, teacher_id, course_time, course_year, course_classoom, course_period, 
     course_type, college_id, course_score, course_videourl
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.system.model.CourseExample" >
@@ -112,7 +112,7 @@
   <insert id="insert" parameterType="com.system.model.Course" >
     insert into course (course_id, course_name, teacher_id, 
       course_time, course_year, course_classoom, 
-      "course_ period", course_type, college_id, 
+      course_period, course_type, college_id, 
       course_score, course_videourl)
     values (#{courseId,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{teacherId,jdbcType=INTEGER}, 
       #{courseTime,jdbcType=VARCHAR}, #{courseYear,jdbcType=DATE}, #{courseClassoom,jdbcType=VARCHAR}, 
@@ -141,7 +141,7 @@
         course_classoom,
       </if>
       <if test="coursePeriod != null" >
-        "course_ period",
+        course_period,
       </if>
       <if test="courseType != null" >
         course_type,
@@ -220,7 +220,7 @@
         course_classoom = #{record.courseClassoom,jdbcType=VARCHAR},
       </if>
       <if test="record.coursePeriod != null" >
-        "course_ period" = #{record.coursePeriod,jdbcType=INTEGER},
+        course_period = #{record.coursePeriod,jdbcType=INTEGER},
       </if>
       <if test="record.courseType != null" >
         course_type = #{record.courseType,jdbcType=VARCHAR},
@@ -247,7 +247,7 @@
       course_time = #{record.courseTime,jdbcType=VARCHAR},
       course_year = #{record.courseYear,jdbcType=DATE},
       course_classoom = #{record.courseClassoom,jdbcType=VARCHAR},
-      "course_ period" = #{record.coursePeriod,jdbcType=INTEGER},
+      course_period = #{record.coursePeriod,jdbcType=INTEGER},
       course_type = #{record.courseType,jdbcType=VARCHAR},
       college_id = #{record.collegeId,jdbcType=INTEGER},
       course_score = #{record.courseScore,jdbcType=INTEGER},
@@ -275,7 +275,7 @@
         course_classoom = #{courseClassoom,jdbcType=VARCHAR},
       </if>
       <if test="coursePeriod != null" >
-        "course_ period" = #{coursePeriod,jdbcType=INTEGER},
+        course_period = #{coursePeriod,jdbcType=INTEGER},
       </if>
       <if test="courseType != null" >
         course_type = #{courseType,jdbcType=VARCHAR},
@@ -299,7 +299,7 @@
       course_time = #{courseTime,jdbcType=VARCHAR},
       course_year = #{courseYear,jdbcType=DATE},
       course_classoom = #{courseClassoom,jdbcType=VARCHAR},
-      "course_ period" = #{coursePeriod,jdbcType=INTEGER},
+      course_period = #{coursePeriod,jdbcType=INTEGER},
       course_type = #{courseType,jdbcType=VARCHAR},
       college_id = #{collegeId,jdbcType=INTEGER},
       course_score = #{courseScore,jdbcType=INTEGER},

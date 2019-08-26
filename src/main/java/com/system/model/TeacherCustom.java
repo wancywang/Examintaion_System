@@ -5,13 +5,13 @@ package com.system.model;
  */
 public class TeacherCustom extends Teacher {
     //所属院系名
-    private String collegeName;
+    private College college;
 
-    public void setcollegeName(String collegeName) {
-        this.collegeName = collegeName;
+    public College getCollege() {
+        return college;
     }
 
-    public String getcollegeName() {
-        return collegeName;
+    public void setCollege(College college) {
+        this.college = college;
     }
 }
